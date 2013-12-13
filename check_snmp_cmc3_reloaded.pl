@@ -917,18 +917,18 @@ sub pmm_threshold_check {
 
 
 sub help {
-	print "This plugin checks the phoenix contact pmm-ma600 devices over modbus tcp\n";
-	print "You need to have an ethernet module and you need to active modbus tcp on your device\n\n";
+	print "\n";
+	print "Nagios Plugin to check the Ports of an Rittal CMC3 Unit
+You just need to define a Port. The Plugin does a auto detection on this port.
+The thresholds are coming from the device (low and high)\n";
+
 	print "Version = ".$PLUGIN_VERSION."\n";
-	
+	print "Only SNMPv2\n";
+
 	print "Usage:\n\n";
 	print "-h	print help\n";
 	print "-H	Hostname or IP\n";
 	print "-C	SNMP Community\n";
 	print "-P	Unit Port\n";
-	print "-M	Mode\n";
-
-	print "Modes:\n";
-	print "Auto,...\n\n";
-
+	print "\n";
 }
