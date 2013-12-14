@@ -8,6 +8,9 @@
 # - 12.12.2013 Version 1.1
 # 	- Added support for PSM-M16
 # 	- Made some code optimization
+# - 14.12.2013 Version 1.2
+# 	- Small bugfix with the low threshold check
+#
 # Todo:
 # - write pnp template
 # - manual warning and critical values
@@ -900,11 +903,11 @@ sub pmm_threshold_check {
                 $EXIT_CODE=2;
                 $EXIT_WORD="CRITICAL";
         }
-        elsif (($PORT_VALUE <= $PORT_LOWWARN) && ($PORT_VALUE > $PORT_LOWCRIT)) {
+        elsif (($PORT_VALUE <= $PORT_LOWWARN) && ($PORT_VALUE > $PORT_LOWCRIT) && ($PORT_LOWWARN > 0)) {
                 $EXIT_CODE=1;
                 $EXIT_WORD="WARNING";
         }
-        elsif ($PORT_VALUE <= $PORT_LOWCRIT) {
+        elsif (($PORT_VALUE <= $PORT_LOWCRIT) && ($PORT_LOWCRIT > 0)) {
                 $EXIT_CODE=2;
                 $EXIT_WORD="CRITICAL";
         }
