@@ -262,13 +262,16 @@ sub check_final_exit_code {
         if ($EXIT_CODE_FINAL eq $EXIT_CODE_TEMP){
                 $EXIT_CODE_FINAL=$EXIT_CODE_TEMP;
         }
-        elsif (($EXIT_CODE_FINAL eq "1") && ($EXIT_CODE_TEMP eq "0")){
+        elsif (($EXIT_CODE_FINAL eq 1) && ($EXIT_CODE_TEMP eq 0)){
                 $EXIT_CODE_FINAL=$EXIT_CODE_FINAL;
         }
-        elsif (($EXIT_CODE_FINAL eq "2") && ($EXIT_CODE_TEMP eq "0") || ($EXIT_CODE_TEMP eq "1")){
+	elsif (($EXIT_CODE_TEMP eq 1) && ($EXIT_CODE_FINAL eq 0)){
+		$EXIT_CODE_FINAL=$EXIT_CODE_TEMP;
+	}
+        elsif (($EXIT_CODE_FINAL eq 2) && ($EXIT_CODE_TEMP eq 1) || ($EXIT_CODE_TEMP eq 1)){
                 $EXIT_CODE_FINAL=$EXIT_CODE_FINAL;
         }
-        elsif (($EXIT_CODE_FINAL eq "0") && ($EXIT_CODE_TEMP gt "0")){
+        elsif (($EXIT_CODE_FINAL eq 0) && ($EXIT_CODE_TEMP gt 0)){
                 $EXIT_CODE_FINAL=$EXIT_CODE_TEMP;
         }
 return $EXIT_CODE_FINAL;
@@ -387,8 +390,8 @@ sub check_door {
 	$PORT_VALUE = $PORT_VALUE->{$PORT_VALUE_OID};
 
 	if ($PORT_VALUE == 12) {
-		$EXIT_CODE=2;
-		$EXIT_STRING="CRITICAL - ".$PORT_NAME." Door is open";
+		$EXIT_CODE=1;
+		$EXIT_STRING="WARNING - ".$PORT_NAME." Door is open";
 	}
 	else {
 		$EXIT_CODE=0;
